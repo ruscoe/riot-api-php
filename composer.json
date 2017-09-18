@@ -1,0 +1,15 @@
+{
+  "name": "ruscoe/riot-api-php",
+  "version": "1.0.0",
+  "type": "library",
+  "description": "PHP library for the Riot Games API",
+  "keywords": ["riot games", "league of legends"],
+  "homepage": "https://github.com/ruscoe/riot-api-php",
+  "require": {
+    "php": ">=7.0.0",
+    "guzzlehttp/guzzle": "^6.2.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.2.2"
+  }
+}
