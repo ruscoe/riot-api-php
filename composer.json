@@ -16,5 +16,10 @@
     "psr-4": {
       "Riot\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Riot\\Tests\\": "tests/src/"
+    }
   }
 }

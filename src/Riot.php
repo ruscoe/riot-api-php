@@ -26,14 +26,14 @@ class Riot {
    *
    * @var string $api_key
    */
-  private $api_key;
+  protected $api_key;
 
   /**
    * The GuzzleHttp client.
    *
    * @var Client $client
    */
-  private $http_client;
+  protected $http_client;
 
   /**
    * Riot constructor.
@@ -90,6 +90,16 @@ class Riot {
       }
       throw new RiotException($message, $e->getCode(), $e);
     }
+  }
+
+  /**
+   * Gets the HTTP client.
+   *
+   * @return \GuzzleHttp\Client
+   *   The Guzzle HTTP client.
+   */
+  public function getClient() {
+    return $this->http_client;
   }
 
 }
