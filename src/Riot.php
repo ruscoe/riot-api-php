@@ -13,11 +13,11 @@ use GuzzleHttp\Exception\RequestException;
 class Riot {
 
   /**
-   * The API endpoint.
+   * The base API URL.
    *
    * TODO: Allow all regions.
    *
-   * @var string $endpoint
+   * @var string $api_url
    */
   protected $api_url = 'https://na1.api.riotgames.com';
 
@@ -51,8 +51,8 @@ class Riot {
    *
    * @param string $method
    *   The REST method to use when making the API request.
-   * @param string $endpoint
-   *   The API endpoint for the API request.
+   * @param string $path
+   *   The API path for the request.
    * @param array $path_params
    *   Associative array of path parameters.
    * @param array $query_params
@@ -63,7 +63,7 @@ class Riot {
    *
    * @throws RiotException
    */
-  public function request($method, $endpoint, $path_params = NULL, $query_params = NULL) {
+  public function request($method, $path, $path_params = NULL, $query_params = NULL) {
     $options = [
       'headers' => [
         'X-Riot-Token' => $this->api_key,
@@ -83,12 +83,12 @@ class Riot {
 
     if (!empty($path_params)) {
       foreach ($path_params as $key => $value) {
-        $endpoint = str_replace('{' . $key . '}', $value, $endpoint);
+        $path = str_replace('{' . $key . '}', $value, $path);
       }
     }
 
     try {
-      $uri = $this->api_url . $endpoint;
+      $uri = $this->api_url . $path;
       $response = $this->http_client->request($method, $uri, $options);
       $data = json_decode($response->getBody());
       return $data;
