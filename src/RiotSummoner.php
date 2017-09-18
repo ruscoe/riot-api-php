@@ -20,11 +20,11 @@ class RiotSummoner extends Riot {
    * @see https://developer.riotgames.com/api-methods/#summoner-v3/GET_getBySummonerId
    */
   public function byId($summoner_id) {
-    $parameters = [
+    $path_params = [
       'summonerId' => $summoner_id,
     ];
 
-    return $this->request('GET', '/lol/summoner/v3/summoners/{summonerId}', $parameters);
+    return $this->request('GET', '/lol/summoner/v3/summoners/{summonerId}', $path_params);
   }
 
   /**
@@ -38,11 +38,11 @@ class RiotSummoner extends Riot {
    * @see https://developer.riotgames.com/api-methods/#summoner-v3/GET_getByAccountId
    */
   public function byAccountId($account_id) {
-    $parameters = [
+    $path_params = [
       'accountId' => $account_id,
     ];
 
-    return $this->request('GET', '/lol/summoner/v3/summoners/by-account/{accountId}', $parameters);
+    return $this->request('GET', '/lol/summoner/v3/summoners/by-account/{accountId}', $path_params);
   }
 
   /**
@@ -56,11 +56,11 @@ class RiotSummoner extends Riot {
    * @see https://developer.riotgames.com/api-methods/#summoner-v3/GET_getBySummonerName
    */
   public function byName($summoner_name) {
-    $parameters = [
+    $path_params = [
       'summonerName' => $summoner_name,
     ];
 
-    return $this->request('GET', '/lol/summoner/v3/summoners/by-name/{summonerName}', $parameters);
+    return $this->request('GET', '/lol/summoner/v3/summoners/by-name/{summonerName}', $path_params);
   }
 
 }

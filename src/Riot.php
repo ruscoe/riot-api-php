@@ -53,26 +53,39 @@ class Riot {
    *   The REST method to use when making the API request.
    * @param string $endpoint
    *   The API endpoint for the API request.
-   * @param array $parameters
-   *   Associative array of endpoint parameters.
+   * @param array $path_params
+   *   Associative array of path parameters.
+   * @param array $query_params
+   *   Associative array of query parameters.
    *
    * @return object
    *   Riot Games API response object.
    *
    * @throws RiotException
    */
-  public function request($method, $endpoint, $parameters = NULL) {
-    if (!empty($parameters)) {
-      foreach ($parameters as $key => $value) {
-        $endpoint = str_replace('{' . $key . '}', $value, $endpoint);
-      }
-    }
-
+  public function request($method, $endpoint, $path_params = NULL, $query_params = NULL) {
     $options = [
       'headers' => [
         'X-Riot-Token' => $this->api_key,
       ],
     ];
+
+    if (!empty($query_params)) {
+      if ($method == 'GET') {
+        // Send parameters in the query string.
+        $options['query'] = $query_params;
+      }
+      else {
+        // Send parameters as JSON in request body.
+        $options['json'] = (object) $query_params;
+      }
+    }
+
+    if (!empty($path_params)) {
+      foreach ($path_params as $key => $value) {
+        $endpoint = str_replace('{' . $key . '}', $value, $endpoint);
+      }
+    }
 
     try {
       $uri = $this->api_url . $endpoint;
