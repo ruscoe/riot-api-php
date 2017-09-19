@@ -73,7 +73,8 @@ class Riot {
     if (!empty($query_params)) {
       if ($method == 'GET') {
         // Send parameters in the query string.
-        $options['query'] = $query_params;
+        $prepared_query_params = $this->prepareQueryParams($query_params);
+        $options['query'] = $prepared_query_params;
       }
       else {
         // Send parameters as JSON in request body.
@@ -113,6 +114,31 @@ class Riot {
    */
   public function getClient() {
     return $this->http_client;
+  }
+
+  /**
+   * Prepares query parameters for use with the Riot Games API.
+   *
+   * @param array $query_params
+   *   Associative array of query parameters.
+   *
+   * @return array
+   *   Associative array of prepared query parameters.
+   */
+  private function prepareQueryParams($query_params) {
+    $prepared_query_params = [];
+
+    foreach ($query_params as $key => $value) {
+      // Convert booleans to strings.
+      if (is_bool($value)) {
+        $prepared_query_params[$key] = ($value) ? 'true' : 'false';
+      }
+      else {
+        $prepared_query_params[$key] = $value;
+      }
+    }
+
+    return $prepared_query_params;
   }
 
 }
