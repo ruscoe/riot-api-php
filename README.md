@@ -1,5 +1,8 @@
 # PHP library for the Riot Games API
 
+**Work in progress**: Only Champion, Champion Mastery, Static Data, and Summoner
+API methods have been implemented so far.
+
 ## Structure
 
 Each component of the Riot Games API is separated into its own class. This helps
