@@ -14,7 +14,7 @@ with readability and is easy to extend whenever new components are added.
 
 ```php
 $summoner_api = new RiotSummoner($your_api_key);
-$summoner = $summoner_api->byName('Rogue Stimulant');
+$summoner = $summoner_api->byName('RiotSchmick');
 ```
 
 The returned object:
@@ -24,7 +24,7 @@ stdClass Object
 (
     [id] => 88790059
     [accountId] => 239976345
-    [name] => Rogue Stimulant
+    [name] => RiotSchmick
     [profileIconId] => 20
     [revisionDate] => 1505756776000
     [summonerLevel] => 16
